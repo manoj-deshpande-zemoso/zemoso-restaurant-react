@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import axios from 'axios';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const api = axios.create({
+    mode: 'no-cors',
+    headers: {
+        'Access-Control-Allow-Headers': '*',
+        'Content-Type': 'application/json'
+    },
+    baseURL: 'localhost:8080/zemoso'
+})
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function TableContainer() {
+
+    const[tables, setTables] = useState([]);
+
+    const getTables = async () => {
+        api.get('/tables').then(res => setTables(res.data)).catch(err=> console.log(err));
+    }
+
+    getTables();
+
+    return(
+        <div>
+            {
+                tables.map(table => 
+                    <div>
+                        <h2>{table.name}</h2>
+                        <p>
+                            <div>Bill: Rs. {table.bill}</div>
+                            <div>Total Items: {table.totalItems}</div>
+                        </p>
+                    </div>
+                )
+            }
+        </div>
+    );
+}
+
+ReactDOM.render(<TableContainer></TableContainer>, document.getElementById('root'));
