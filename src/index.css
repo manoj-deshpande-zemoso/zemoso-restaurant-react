@@ -1,13 +1,43 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+*{ box-sizing: border-box; }
+body{ margin: 0; }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+header{ border-bottom: 5px solid #ccc; }
+header .header-text{ margin: 0px; padding: 15px; text-align: center; }
+
+#root{ width: 100vw; height: calc(100vh - 83px); }
+#root .restaurant{ display: flex; width: 100%; height: 100%; }
+#root .restaurant .search-container{ height: 80px; padding: 20px; text-align: center; border-bottom: 5px solid #ccc}
+#root .restaurant .search-container input[type=text]{ border:1px solid #ccc; font-size: 18px; padding: 5px; outline: none; height: 35px; border-radius: 5px; box-shadow: 1px 3px #ccc; min-width: 100px; }
+#root .restaurant .search-container input[type=text]:focus{ box-shadow: 1px 3px 5px 5px #ccc; }
+#root .restaurant .search-container input[type=text]::placeholder{ color: #ccc; }
+#root .restaurant .tables-container{ width: 35%; border-right: 5px solid #ccc; }
+#root .restaurant .tables-container .tables{ max-height: calc(100vh - 163px); overflow-y: auto; }
+#root .restaurant .tables-container .tables .table{ width: 80%; border: 1px solid #ccc; margin: 10px auto; border-radius: 10px; box-shadow: 2px 4px 5px #ccc; }
+#root .restaurant .tables-container .tables .hovered{ box-shadow: 4px 5px 5px 5px #ccc; }
+#root .restaurant .tables-container .tables .table .table-name-element{ text-align: center; font-weight: bold; padding: 10px; }
+#root .restaurant .tables-container .tables .table .bill{ display: inline-block; width: 50%; padding: 10px; text-align: center; color: #6f6e6e; }
+#root .restaurant .tables-container .tables .table .total-items{ display: inline-block; width: 50%; padding: 10px; text-align: center; color: #6f6e6e; }
+
+#root .restaurant .menu-container{ width: 65%; position: relative; }
+#root .restaurant .menu-container .menu{ max-height: calc(100vh - 163px); overflow-y: auto; }
+#root .restaurant .menu-container .menu .item{ width: 80%; border: 1px solid #ccc; margin: 10px auto; border-radius: 10px; box-shadow: 4px 5px 5px #ccc; padding: 10px; }
+#root .restaurant .menu-container .menu .item .item-header{ display: flex; }
+#root .restaurant .menu-container .menu .item .item-header .icon-figure{ margin: 0px; margin-right: 10px; }
+#root .restaurant .menu-container .menu .item .item-header .icon-figure .icon{ width: 20px; height: 20px; }
+#root .restaurant .menu-container .menu .item .item-header .item-name{ font-size: 18px;}
+#root .restaurant .menu-container .menu .item .item-footer{ padding-top: 10px; }
+#root .restaurant .menu-container .menu .item .item-footer .item-price{ width: 50%; color: #6f6e6e; display: inline-block; }
+#root .restaurant .menu-container .menu .item .item-footer .item-category{ width: 50%; color: #6f6e6e; display: inline-block; }
+
+.hidden{ display: none; }
+#modalButton{ display: none; }
+
+.modal .orderDetails{ display: grid; grid-template-columns: repeat(5, auto); }
+.modal .orderDetails span{ padding: 5px; }
+.modal .orderDetails .header{ font-weight: bold; }
+.modal .orderDetails .quantitySpan{ padding: 0px; }
+.modal .orderDetails .deleteSpan .deleteIcon{ cursor: pointer; }
+.modal .orderDetails .quantitySpan .quantity{ max-width: 75px; }
+.modal .orderDetails .footer{ padding-top: 20px; font-weight: bold; }
+
+.vegSwitch{ position: absolute; right: 20px; top: 20px; }
